@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta tag for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main container for the currency converter -->
+    <div class="converter-container">
+        <h1>Currency Converter</h1>
+
+        <!-- Form where users input the amount and select currencies -->
+        <form id="currency-form">
+            <!-- Input for entering the amount -->
+            <input type="number" id="amount" placeholder="Enter amount" required>
+            
+            <!-- Dropdown for selecting the currency to convert from -->
+            <label for="from-currency">From:</label>
+            <select id="from-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="INR">INR</option>
+            </select>
+
+            <!-- Dropdown for selecting the currency to convert to -->
+            <label for="to-currency">To:</label>
+            <select id="to-currency">
+                <option value="INR">INR</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+            </select>
+
+            <!-- Button to trigger the currency conversion -->
+            <button type="button" onclick="convertCurrency()">Convert</button>
+        </form>
+
+        <!-- Paragraph to display the result of the conversion -->
+        <p id="result"></p>
+    </div>
+    
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
