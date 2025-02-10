@@ -1,33 +1,33 @@
-// Function to convert the currency when the "Convert" button is clicked
-function convertCurrency() {
-    // Get the input amount value
+// Function to fetch exchange rates and convert currency
+async function convertCurrency() {
     let amount = document.getElementById('amount').value;
-    
-    // Get the selected "from" currency value
     let fromCurrency = document.getElementById('from-currency').value;
-    
-    // Get the selected "to" currency value
     let toCurrency = document.getElementById('to-currency').value;
-    
-    // Get the element where the result will be displayed
     let result = document.getElementById('result');
 
-    // Define a simple conversion rate object for demo purposes
-    const conversionRates = {
-        'USD': {'INR': 82.5, 'EUR': 0.92, 'USD': 1}, // Conversion rates from USD
-        'INR': {'USD': 0.012, 'EUR': 0.011, 'INR': 1}, // Conversion rates from INR
-        'EUR': {'USD': 1.09, 'INR': 89.5, 'EUR': 1} // Conversion rates from EUR
-    };
-
-    // Check if the amount is valid (non-empty and a number)
-    if (amount === "" || isNaN(amount)) {
-        result.textContent = "Please enter a valid amount."; // Show error message
-        return; // Exit the function
+    if (amount === "" || isNaN(amount) || amount <= 0) {
+        result.textContent = "Please enter a valid amount.";
+        return;
     }
 
-    // Convert the amount using the conversion rate from the selected currencies
-    let convertedAmount = amount * conversionRates[fromCurrency][toCurrency];
+    try {
+        // Fetch real-time exchange rates from API
+        let response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
+        let data = await response.json();
 
-    // Display the converted amount in the result paragraph
-    result.textContent = `${amount} ${fromCurrency} is equal to ${convertedAmount.toFixed(2)} ${toCurrency}`;
+        // Get the conversion rate for the selected currency
+        let conversionRate = data.rates[toCurrency];
+
+        if (!conversionRate) {
+            result.textContent = "Conversion rate not available.";
+            return;
+        }
+
+        // Calculate converted amount
+        let convertedAmount = amount * conversionRate;
+        result.textContent = `${amount} ${fromCurrency} is equal to ${convertedAmount.toFixed(2)} ${toCurrency}`;
+    } catch (error) {
+        result.textContent = "Error fetching exchange rates. Try again later.";
+        console.error("Error:", error);
+    }
 }
