@@ -11,18 +11,39 @@
         <h1>Currency Converter</h1>
         <form id="currency-form">
             <input type="number" id="amount" placeholder="Enter amount" required>
+            
             <label for="from-currency">From:</label>
             <select id="from-currency">
                 <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
                 <option value="INR">INR</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="AUD">AUD</option>
+                <option value="CAD">CAD</option>
+                <option value="CNY">CNY</option>
+                <option value="CHF">CHF</option>
+                <option value="SGD">SGD</option>
+                <option value="ZAR">ZAR</option>
+                <option value="NZD">NZD</option>
             </select>
+            
             <label for="to-currency">To:</label>
             <select id="to-currency">
-                <option value="INR">INR</option>
                 <option value="USD">USD</option>
+                <option value="INR">INR</option>
                 <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="AUD">AUD</option>
+                <option value="CAD">CAD</option>
+                <option value="CNY">CNY</option>
+                <option value="CHF">CHF</option>
+                <option value="SGD">SGD</option>
+                <option value="ZAR">ZAR</option>
+                <option value="NZD">NZD</option>
             </select>
+            
             <button type="button" onclick="convertCurrency()">Convert</button>
         </form>
         <p id="result"></p>
